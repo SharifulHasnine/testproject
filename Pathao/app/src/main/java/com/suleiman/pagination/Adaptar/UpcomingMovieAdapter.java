@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class UpcomingMovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int ITEM = 0;
     private static final int LOADING = 1;
@@ -34,7 +33,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private boolean isLoadingAdded = false;
 
-    public PaginationAdapter(Context context) {
+    public UpcomingMovieAdapter(Context context) {
         this.context = context;
         movieResults = new ArrayList<>();
     }
@@ -67,7 +66,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @NonNull
     private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
         RecyclerView.ViewHolder viewHolder;
-        View v1 = inflater.inflate(R.layout.item_list, parent, false);
+        View v1 = inflater.inflate(R.layout.item_list_upcoming, parent, false);
         viewHolder = new MovieVH(v1);
         return viewHolder;
     }
@@ -82,15 +81,13 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 final MovieVH movieVH = (MovieVH) holder;
 
                 movieVH.mMovieTitle.setText(result.getTitle());
-                if(result.getReleaseDate()!=null){
-                    movieVH.mYear.setText(
-                            result.getReleaseDate().substring(0, 4)  // we want the year only
-                                    + " | "
-                                    + result.getOriginalLanguage().toUpperCase()
-                    );
-                }
 
 
+                movieVH.mYear.setText(
+                        result.getReleaseDate().substring(0, 4)  // we want the year only
+                                + " | "
+                                + result.getOriginalLanguage().toUpperCase()
+                );
                 movieVH.mMovieDesc.setText(result.getOverview());
 
                 /**

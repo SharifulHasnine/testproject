@@ -22,9 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+public class TrendingPaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int ITEM = 0;
     private static final int LOADING = 1;
     private static final String BASE_URL_IMG = "http://image.tmdb.org/t/p/w185";
@@ -34,7 +32,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private boolean isLoadingAdded = false;
 
-    public PaginationAdapter(Context context) {
+    public TrendingPaginationAdapter(Context context) {
         this.context = context;
         movieResults = new ArrayList<>();
     }
@@ -82,15 +80,13 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 final MovieVH movieVH = (MovieVH) holder;
 
                 movieVH.mMovieTitle.setText(result.getTitle());
-                if(result.getReleaseDate()!=null){
-                    movieVH.mYear.setText(
-                            result.getReleaseDate().substring(0, 4)  // we want the year only
-                                    + " | "
-                                    + result.getOriginalLanguage().toUpperCase()
-                    );
-                }
 
 
+                movieVH.mYear.setText(
+                        result.getReleaseDate().substring(0, 4)  // we want the year only
+                                + " | "
+                                + result.getOriginalLanguage().toUpperCase()
+                );
                 movieVH.mMovieDesc.setText(result.getOverview());
 
                 /**
@@ -232,6 +228,5 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             super(itemView);
         }
     }
-
 
 }
